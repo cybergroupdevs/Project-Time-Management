@@ -1,3 +1,4 @@
+import { SendHttpRequestService } from './../send-http-request.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdmindashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(private _service:SendHttpRequestService) {
    }
-
-  ngOnInit() {
-  }
+   usersArray: any;
+   tabularData() {
+    let obj=this._service.showEmployees().subscribe(res => {
+      this.usersArray=res;
+      console.log(res);
+    });
+    console.log(obj);
+    }
+  
+    ngOnInit() {
+    }
 
 }

@@ -15,7 +15,6 @@ export class SendHttpRequestService {
   private log(message: string) {
     console.log(message);
   }
-  header_token: HttpHeaders = new HttpHeaders().set("token", localStorage.getItem('Authorization'));
   // //Decode JWT and return the Payload in JSON Format
   jsonDecoder = (token) => {
     var base64Url = token.split('.')[1];
@@ -24,21 +23,13 @@ export class SendHttpRequestService {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
-  }
+  };
 
-   showEmployees(): Observable<any>{
-    return this.http.get("http://localhost:3000/employees", {headers:this.header_token}).pipe(
-      tap(_ => this.log("Log In")),
-      catchError(this.handleError<any>('Some Error Occurred'))
-    );
-  }
-
- 
+  //header_token: HttpHeaders = new HttpHeaders().set("token", localStorage.getItem('Authorization'));
   logMeIn(obj): Observable<any>{
-    return this.http.post("http://localhost:8080/login", obj, {responseType: 'text'}).pipe(
-      tap(_ => this.log("Log In")),
-      catchError(this.handleError<any>('Some Error Occurred'))
-    );
+    console.log(obj);
+    //debugger
+    return this.http.post("http://localhost:3000/login", obj, {responseType: 'json'});
   }
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

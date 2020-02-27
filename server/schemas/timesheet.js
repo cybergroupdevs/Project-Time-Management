@@ -36,10 +36,12 @@ module.exports={
     },
     status:{
         type:String,
-        enum:["Approved","Declined","Pending"]
+        enum:["Approved","Declined","Pending"],
+        required:true
     },
     totalHoursWeek:{
-        type:Number
+         type:Number,
+        default:null
     }
 
 
