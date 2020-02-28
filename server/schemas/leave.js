@@ -1,5 +1,5 @@
 const employee=require('./employee');
-const project=require('./project-details');
+const project=require('./project');
 const mongoose = require('mongoose');
 const timesheet=require('./timesheet');
 var ObjectId = mongoose.Schema.Types.ObjectId;
@@ -8,7 +8,7 @@ module.exports={
    leaveType:{
        type:String,
        enum:["Earned leave","Casual leave","Sick leave"],
-       required:true
+       //required:true
    },
    startDate:{
         type:Date

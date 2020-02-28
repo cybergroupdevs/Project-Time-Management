@@ -26,6 +26,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+ 
   const { empId, email, name, designation, joining, phone, address } = req.body;
 
   const newEmployee = new Employee({

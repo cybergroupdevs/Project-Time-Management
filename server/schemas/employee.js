@@ -1,20 +1,17 @@
 
 const mongoose = require('mongoose');
-const project=require('./project-details');
+const project=require('./project');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const employeeSchema = new mongoose.Schema({
-  empId: {
-    type: String,
-    required: true,
-    unique: true,
-    minlength: 3,
-    maxlength: 20
+  empId:{
+    type:ObjectId,
+    required:true
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+   // required: true,
+    //unique: true,
     minlength: 5,
     maxlength: 50
   },
@@ -33,7 +30,7 @@ const employeeSchema = new mongoose.Schema({
   designation: [
     {
       type: String,
-      enum: ["ADMIN", "CLEVEL", "PROJECTMANAGER", "EMPLOYEE"]
+      enum: ["Consultant 1","Consultant 2","Associate"]
     }
   ],
   joining: {

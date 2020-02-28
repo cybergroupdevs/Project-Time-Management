@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const schema=require('../schemas');
 const timesheetschema=mongoose.Schema(schema);
-class Employee{
+class Timesheet{
   constructor(){
     this.model=mongoose.model('Employee',timesheetschema);
   }
@@ -25,7 +25,7 @@ class Employee{
     }
 }
 
-module.exports=new Employee();
+module.exports=new Timesheet();
 
 
 

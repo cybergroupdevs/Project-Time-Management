@@ -1,6 +1,6 @@
 const employee=require('./employee');
 const leave = require('./leave');
-const  project=require('./project-details');
+const  project=require('./project');
 const timesheet=require('./timesheet');
 
 

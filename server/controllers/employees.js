@@ -18,6 +18,7 @@ class Employee {
      
     };
     const employee = await model.employee.save(employeeObj);
+    console.log("running",employee);
     res.send(employee);
   }
 

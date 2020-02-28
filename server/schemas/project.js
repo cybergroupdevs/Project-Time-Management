@@ -23,14 +23,15 @@ module.exports={
         type:String,
         default:null
     },
-    empId:[
-        {type:ObjectId,
+    empId:
+        [{type:ObjectId,
+            ref:"employee",
          default:null,   
-        ref:"employee"
+       
     }],
     status:{
         type:String,
         enum:['Completed','Discarded','In progress'],
-        required:true
+    //    required:true
     }
 }

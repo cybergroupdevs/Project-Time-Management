@@ -6,7 +6,7 @@ class Employee{
     this.model=mongoose.model('Employee',employeeschema);
   }
    //getting the employee data as per criteria  
-    async get(criteria={},columns={}){
+    async findOne(criteria={},columns={}){
        return this.model.findOne(criteria,columns);
    }
    //saves the data of newly created employee

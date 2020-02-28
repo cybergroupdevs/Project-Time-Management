@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 const employee=require('./employee');
-const project=require('./project-details');
+const project=require('./project');
 
 module.exports={
     
@@ -10,7 +10,7 @@ module.exports={
         ref:"employee",
         default:null
     },
-    pId:{
+    projectId:{
         type:ObjectId,
         ref:"project",
         default:null
@@ -37,7 +37,7 @@ module.exports={
     status:{
         type:String,
         enum:["Approved","Declined","Pending"],
-        required:true
+       // required:true
     },
     totalHoursWeek:{
          type:Number,
