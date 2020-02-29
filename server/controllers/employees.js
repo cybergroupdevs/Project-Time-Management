@@ -9,13 +9,14 @@ class Employee {
 
   async create(req, res) {
     let employeeObj = {
+      empId:req.body.empId,
       name: req.body.name,
-      phoneNo: req.body.phoneNo,
+      phoneNo: req.body.phone,
       email: req.body.email,
       designation: req.body.designation,
       password: req.body.password,
-      address:req.body.address
-     
+      address:req.body.address,
+      role:req.body.role
     };
     const employee = await model.employee.save(employeeObj);
     console.log("running",employee);
@@ -24,8 +25,8 @@ class Employee {
 
   async index(req, res) {
     const employeeList = await model.employee.log({},{"name":1,
-                                                           "designation":1,
-                                                             "age":1,"email":1});
+                                                     "designation":1,
+                                                      "email":1});
     res.send(employeeList);
   }
 
@@ -34,38 +35,21 @@ class Employee {
     res.send(employeeList);
   }
 
-//   async update(req, res) {
-//     try {
-//       let employeeUpdatedObj = {
-//         name: req.body.name,
-//         email: req.body.email,
-//         phone: req.body.phone,
-//         address: {
-//           city: req.body.address.city,
-//           state: req.body.address.state,
-//           country: req.body.address.country,
-//           pincode: req.body.address.pincode
-//         },
-//         designation: req.body.designation,
-//         age: req.body.age,
-//         technologies: req.body.technologies
-//       };
-//       const updatedEmployee = await model.employee.update(
-//         { _id: req.params.id },
-//         employeeUpdatedObj
-//       );
-//       console.log("UPDATED");
-//       res.send("UPDATED");
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
+
 
 async update(req, res) {
+  let employeeUpdatedObj = {
+    empId:req.body.empId,
+    name: req.body.name,
+    phoneNo: req.body.phone,
+    email: req.body.email,
+    designation: req.body.designation,
+    password: req.body.password,
+    address:req.body.address,
+   
+  };
     const employee = await model.employee.update(
-      { _id: req.params.id },
-      { $set: { email: req.body.email } }
-    );
+      { _id: req.params.id },employeeUpdatedObj );
     res.send(employee);
   }
 
