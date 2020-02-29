@@ -5,13 +5,13 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const employeeSchema = new mongoose.Schema({
   empId:{
-    type:String,
+    type:ObjectId,
     required:true
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+   // required: true,
+    //unique: true,
     minlength: 5,
     maxlength: 50
   },
