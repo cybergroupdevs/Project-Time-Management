@@ -37,6 +37,8 @@ app.use(function (req, res, next) {
 
 require("./routes/route.js")(app);
 
+require("./routes/route.js")(app);
+
 //Adding Routes
 
 

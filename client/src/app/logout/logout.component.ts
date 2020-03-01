@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import {SendHttpRequestService} from '../services/send-http-request.service'
+import {SendHttpRequestService} from '../send-http-request.service'
+import{Router} from '@angular/router'
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
@@ -8,12 +9,12 @@ import {SendHttpRequestService} from '../services/send-http-request.service'
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private http:SendHttpRequestService) { }
+  constructor(private http:SendHttpRequestService,private router:Router) { }
 
   ngOnInit() {
     this.http.logout().subscribe(data=>{
       if(data.success){
-        this.router.navigate()
+        this.router.navigate(["/login"])
       }
       else{
         window.alert("some problem");

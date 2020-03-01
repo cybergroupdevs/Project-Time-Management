@@ -1,7 +1,10 @@
 import { LogoutComponent } from './logout/logout.component';
+//import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectComponent } from './project/project.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 import { EmployeeFormComponent } from './main/employee-form/employee-form.component';
 import { LoginComponent } from "./login/login.component";
-//import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { AccessDeniedComponent } from "./access-denied/access-denied.component";
 import { AdminComponent } from "./admin/admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -16,53 +19,13 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 
 const routes: Routes = [
   {
-      path:'admindashboard', component:AdmindashboardComponent
+      path:'admindashboard', 
+      component:AdmindashboardComponent,
   },
   {
     path:"review",
     component: ReviewComponent
   },
-    // path: '',
-    // component: HomeComponent,
-    //canActivateChild: [AuthorizationGuard],
-    // children: [
-    //   {
-    //     path: 'manager',
-    //     component: ReviewComponent,
-    //     data: {
-    //       allowedRoles: ['manager','clevel']
-    //     }
-    //   },
-    
-    //   {
-    //     path: 'employee',
-    //     component: TimesheetComponent,
-    //     data: {
-    //       allowedRoles: ['employee', 'manager']
-    //     }
-    //   },
-    //   {
-    //     path: 'clevel',
-    //     component: DashboardComponent,
-    //     data: {
-    //       allowedRoles: ['clevel']
-    //     }
-    //   },
-     
-    //   {
-    //     path: 'accessdenied',
-    //     component: AccessDeniedComponent,
-    //     data: {}
-    //   },
-    //   // {
-    //   //   path: 'login',
-    //   //   component: LoginComponent
-    //   // },  
-    //   {
-    //     path: '**',
-    //     redirectTo: ''
-    //   }
-    // ]
    { path: "",
     component: LoginComponent
   },
@@ -72,25 +35,21 @@ const routes: Routes = [
     
   },
   {
+    path: "projects",
+    component: ProjectComponent
+    
+  },
+  {
     path: "employee",
     component: TimesheetComponent
-    // data: {
-    //   allowedRoles: ['employee']
-    // }
   },
   {
     path: "clevel",
     component: DashboardComponent
-    // data: {
-    //   allowedRoles: ['clevel']
-    // }
   },
   {
     path: "admin",
     component: AdmindashboardComponent
-    // data: {
-    //   allowedRoles: ['admin']
-    // }
   },
   {
     path: "accessdenied",
@@ -115,6 +74,27 @@ const routes: Routes = [
       {
         path: ":empId",
         component: EmployeeFormComponent
+      },
+      {
+        path:"profile",
+        component : MyprofileComponent
+      }
+    ]
+  },
+  {
+    path: "projectform",
+    children: [
+      {
+        path: "create/:type",
+        component: ProjectFormComponent
+      },
+      {
+        path: "update/:type",
+        component: ProjectFormComponent
+      },
+      {
+        path: ":projectId",
+        component: ProjectFormComponent
       }
     ]
   },

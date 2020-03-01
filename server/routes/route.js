@@ -13,4 +13,11 @@ module.exports= (app) => {
 	app.get("/projects/:id",controller.projects.show);
 	app.put("/projects/:id",controller.projects.update);
 	app.delete("/projects/:id",controller.projects.delete);
+	app.get("./timesheet",controller.timesheet.index);
+	app.post("./timesheet",controller.timesheet.create);
+	app.post("/api/employee", controller.employees.create);
+	app.put("/api/employee", controller.employees.update);
+	app.get("/api/employee", controller.employees.show);
+	//Timesheet Routes
+	app.post('/api/timesheet', controller.timesheet.create)
 }
