@@ -28,11 +28,6 @@ class Timesheet{
             }
         });
     }
-<<<<<<< HEAD
-}
-
-module.exports = new Timesheet();
-=======
     async index(req, res) {
         const timesheetList = await model.timesheet.log({},{"empId":1,
                                                                "pId":1,
@@ -55,4 +50,3 @@ module.exports = new Timesheet();
 }
 
 module.exports = new Timesheet();
->>>>>>> 176d52a26d0ff8f20993305392294bac2409d186
