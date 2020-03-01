@@ -1,4 +1,6 @@
-import { LoginComponent } from "./main/login/login.component";
+import { LogoutComponent } from './logout/logout.component';
+import { EmployeeFormComponent } from './main/employee-form/employee-form.component';
+import { LoginComponent } from "./login/login.component";
 //import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { AccessDeniedComponent } from "./access-denied/access-denied.component";
 import { AdminComponent } from "./admin/admin.component";
@@ -14,65 +16,60 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 
 const routes: Routes = [
   {
-      path:'admindashboard', component:AdmindashboardComponent,
-    
+      path:'admindashboard', component:AdmindashboardComponent
+  },
+  {
+    path:"review",
+    component: ReviewComponent
+  },
     // path: '',
     // component: HomeComponent,
     //canActivateChild: [AuthorizationGuard],
-    children: [
-      {
-        path: 'manager',
-        component: ReviewComponent,
-        data: {
-          allowedRoles: ['manager','clevel']
-        }
-      },
+    // children: [
+    //   {
+    //     path: 'manager',
+    //     component: ReviewComponent,
+    //     data: {
+    //       allowedRoles: ['manager','clevel']
+    //     }
+    //   },
     
-      {
-        path: 'employee',
-        component: TimesheetComponent,
-        data: {
-          allowedRoles: ['employee', 'manager']
-        }
-      },
-      {
-        path: 'clevel',
-        component: DashboardComponent,
-        data: {
-          allowedRoles: ['clevel']
-        }
-      },
-      // {
-      //   path: 'admin',
-      //   component: AdminComponent ,
-      //   data: {
-      //     allowedRoles: ['admin']
-      //   }
-      // },
-      {
-        path: 'accessdenied',
-        component: AccessDeniedComponent,
-        data: {}
-      },
-      // {
-      //   path: 'login',
-      //   component: LoginComponent
-      // },  
-      {
-        path: '**',
-        redirectTo: ''
-      }
-    ]
-=======
-    path: "",
+    //   {
+    //     path: 'employee',
+    //     component: TimesheetComponent,
+    //     data: {
+    //       allowedRoles: ['employee', 'manager']
+    //     }
+    //   },
+    //   {
+    //     path: 'clevel',
+    //     component: DashboardComponent,
+    //     data: {
+    //       allowedRoles: ['clevel']
+    //     }
+    //   },
+     
+    //   {
+    //     path: 'accessdenied',
+    //     component: AccessDeniedComponent,
+    //     data: {}
+    //   },
+    //   // {
+    //   //   path: 'login',
+    //   //   component: LoginComponent
+    //   // },  
+    //   {
+    //     path: '**',
+    //     redirectTo: ''
+    //   }
+    // ]
+   { path: "",
     component: LoginComponent
   },
   {
     path: "manager",
     component: ReviewComponent
-    // data: {
-    //       allowedRoles: ['manager']
-    //     }
+    
   },
   {
     path: "employee",
@@ -105,10 +102,33 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: "employeeform",
+    children: [
+      {
+        path: "create/:type",
+        component: EmployeeFormComponent
+      },
+      {
+        path: "update/:type",
+        component: EmployeeFormComponent
+      },
+      {
+        path: ":empId",
+        component: EmployeeFormComponent
+      }
+    ]
+  },
+  {
     path: "**",
     redirectTo: ""
+  },
+  {
+    path:"logout",
+    component:LogoutComponent
   }
 ];
+
+
 
 @NgModule({
   declarations: [],

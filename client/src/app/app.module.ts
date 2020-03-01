@@ -12,11 +12,13 @@ import {
   ButtonsModule,
   InputsModule,
   IconsModule,
-  CardsModule
+  CardsModule,
+  TableModule
 } from "angular-bootstrap-md";
-
-
-//import { JwtModule } from '@auth0/angular-jwt';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
@@ -25,39 +27,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
-
-//Components
-import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./header/header.component";
-import { MainComponent } from "./main/main.component";
-import { LoginComponent } from "./main/login/login.component";
 import { EmployeeFormComponent } from "./main/employee-form/employee-form.component";
 import { EmployeeService } from "./services/employee.service";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule, Routes } from "@angular/router";
-
-const routes: Routes = [
-  // { path: "", component: WelcomePageComponent, pathMatch: 'full' },
-  { path: "login", component: LoginComponent },
-  // { path: 'home', component: HomeComponent },
-  {
-    path: "employeeform",
-    children: [
-      {
-        path: "create/:type",
-        component: EmployeeFormComponent
-      },
-      {
-        path: "update/:type",
-        component: EmployeeFormComponent
-      },
-      {
-        path: ":empId",
-        component: EmployeeFormComponent
-      }
-    ]
-  }
-];
+import { TimesheetModule } from './timesheet/timesheet.module';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -69,19 +44,20 @@ const routes: Routes = [
     EmployeeFormComponent,
 
     HomeComponent,
-    TimesheetComponent,
     ReviewComponent,
     DashboardComponent,
     AdminComponent,
     AccessDeniedComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    TimesheetModule,
+   
     //Third Party
     MDBBootstrapModule.forRoot(),
     CheckboxModule,
@@ -92,6 +68,7 @@ const routes: Routes = [
     CardsModule,
     FormsModule, 
     HttpClientModule,
+    TableModule,
    // JwtModule.forRoot({}),
     //Third Party
     MDBBootstrapModule.forRoot(),

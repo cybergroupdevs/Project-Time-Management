@@ -35,11 +35,8 @@ app.use(function (req, res, next) {
  
 // parse application/json
 
+require("./routes/route.js")(app);
 
-
-
-
-require('./routes/route.js')(app)
 //Adding Routes
 
 

@@ -1,16 +1,22 @@
 const mongoose=require('mongoose');
-const schema=require('../schemas');
-const employeeschema=mongoose.Schema(schema.employee);
+const { employee }=require('../schemas');
+const employeeschema=mongoose.Schema(employee);
+
 class Employee{
   constructor(){
+    console.log(this.model, 'Inside models/employee costructor');
     this.model=mongoose.model('Employee',employeeschema);
   }
    //getting the employee data as per criteria  
-    async findOne(criteria={},columns={}){
-       return this.model.findOne(criteria,columns);
+    async get(criteria={},columns={}){
+      console.log(criteria, columns);
+      const findDocument = await this.model.findOne(criteria,columns);
+      console.log(findDocument, 'findDocument'); 
+      return findDocument;
    }
    //saves the data of newly created employee
     async save(employeeObj){
+      console.log("routes me hu")
       console.log(employeeObj, 'new employee created!');
       const employee = await this.model.create(employeeObj);
        return employee;
@@ -29,4 +35,7 @@ class Employee{
     }
 }
 
-module.exports=new Employee();
+const employeeObj = new Employee();
+
+
+module.exports = employeeObj;

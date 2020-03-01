@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const project=require('./project');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-const employeeSchema = new mongoose.Schema({
-  empId:{
-    type:String,
-    required:true
+module.exports = {
+  empId: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 3,
+    maxlength: 20
   },
   email: {
     type: String,
@@ -30,7 +33,7 @@ const employeeSchema = new mongoose.Schema({
   designation: [
     {
       type: String,
-      enum: ["Consultant 1","Consultant 2","Associate"]
+      enum: ["Associate", "Consultant 2", "Consultant 1", "Intern"]
     }
   ],
   joining: {
@@ -57,18 +60,4 @@ const employeeSchema = new mongoose.Schema({
     ref:"project",
     default:null
 }]
-});
-
-employeeSchema.methods.isUnique = async function(empId, email) {
-  const employeeWithEmpId = await Employee.findOne({ empId });
-  const employeeWithEmail = await Employee.findOne({ email });
-
-  if (employeeWithEmpId)
-    return { status: false, message: "EmployeeId already exists" };
-  if (employeeWithEmail)
-    return { status: false, message: "Email already exists" };
-
-  return { status: true };
-};
-
-module.exports = employeeSchema;
+}

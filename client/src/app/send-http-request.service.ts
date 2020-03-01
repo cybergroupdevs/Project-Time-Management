@@ -32,8 +32,12 @@ export class SendHttpRequestService {
       catchError(this.handleError<any>('Some Error Occurred'))
     );
   }
-
- 
+  showReviews(): Observable<any>{
+    return this.http.get("http://localhost:3000/", {headers:this.header_token}).pipe(
+      tap(_ => this.log("Reviews")),
+      catchError(this.handleError<any>('Some Error Occurred'))
+    );
+  }
   logMeIn(obj): Observable<any>{
     return this.http.post("http://localhost:8080/login", obj, {responseType: 'text'}).pipe(
       tap(_ => this.log("Log In")),
@@ -52,6 +56,10 @@ export class SendHttpRequestService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
       };
+    }
+    logout():Observable<logoutstatus>{
+      return this.http.get("http://localhost:3000/logout")
+
     }
   }
 
