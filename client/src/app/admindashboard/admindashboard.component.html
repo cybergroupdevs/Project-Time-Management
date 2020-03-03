@@ -24,8 +24,8 @@
     </button> 
 
   <section class="background_dashboard">
-    <div class="empTable">
-      <div class="test">
+    <!-- <div class="empTable"> -->
+      <!-- <div class="test">
         <div>Employee Id</div>
         <div>Name</div>
         <div>Email</div>
@@ -34,12 +34,22 @@
         <div>View</div>
         <div>Update</div>
         <div>Delete</div>
-      </div>
-      <div class="mt-5">
+      </div> -->
+      <table class="empTable">
+          <th>Employee Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>hesignation</th>
+          <th>Role</th>
+          <th>View</th>
+          <th>Update</th>
+          <th>Delete</th>
+      </table>
+      <div class="">
         <div *ngFor="let employee of usersArray">
           <table-row [employee]="employee" (deleteEmp)="deleteEmployee($event)"></table-row>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </section>
 

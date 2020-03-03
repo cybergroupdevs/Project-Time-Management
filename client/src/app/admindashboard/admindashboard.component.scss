@@ -12,7 +12,12 @@ tbody:nth-child(even) {
 tbody:nth-child(odd) {
   background: #80808054
 }
-
+table-row:nth-child(odd){
+  background: #80808054
+}
+table-row:nth-child(even){
+  background: #80808054
+}
 .table {
   margin-top: 5rem;
   overflow-y: scroll;
@@ -34,9 +39,9 @@ tbody:nth-child(odd) {
   margin-left: 43% !important;
 }
 .empTable{
-    // width: 100vw;
+     width: 100vw;
     color: black;
-    font-size: large;
+    //font-size: large;
     font-weight: 800;
     // padding-left: 5rem;
 }

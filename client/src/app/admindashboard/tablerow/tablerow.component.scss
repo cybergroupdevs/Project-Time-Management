@@ -1,12 +1,14 @@
 .table-row{
-    display: flex;
-    justify-content: space-between;
+    display: table;
     width: 100%;
-  
-
-    td{
-        width: 4rem;
-        font-weight: 500;
-        font-family: 'Lato', sans-serif;
-    }
+}
+td{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color:black;
+    line-height: 1.4;
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
