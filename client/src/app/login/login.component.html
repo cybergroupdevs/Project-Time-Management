@@ -47,9 +47,7 @@
         <div *ngIf="f.password.errors.required">Password is required</div>
         <div *ngIf="f.password.errors.minlength">Password must be atleast 4 characters</div>
       </div>
-      <h2 class="message" [ngStyle]="{'visibility': (!isMessage? 'hidden' : 'visible')}">
-        Invalid Credentials
-      </h2>
+ 
   <div class="form-group">
           <input
         type="submit"
