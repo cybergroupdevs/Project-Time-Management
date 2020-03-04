@@ -36,9 +36,9 @@ table-row:nth-child(even){
   flex-wrap: nowrap;
 }
 
-.show {
-  margin-left: 43% !important;
-}
+// .show {
+//   margin-left: 43% !important;
+// }
 .empTable{
      width: 100vw;
     color: black;
@@ -170,4 +170,11 @@ span{
   color: red;
   text-align: center;
   font-size: 4.2rem;
+}
+tbody{
+  width: 80%;
+  margin-left: auto;
+}
+table-row{
+  width: 80%;
 }
