@@ -24,13 +24,25 @@ export class LoginComponent implements OnInit{
   @ViewChild('email', {static: false}) email: ElementRef;
   @ViewChild('password', {static: false}) password: ElementRef;
   res: any;
-  loginForm: FormGroup;
-  isSubmitted  =  false;
-
-  get formControls() { return this.loginForm.controls; }
-
+  myform:FormGroup;
+  submitted  =  false;
+  ngOnInit() {
+    this.myform  =  this.formBuilder.group({
+        email: ['', [Validators.required,Validators.email]],
+        password: ['', [Validators.required,Validators.minLength(4)]]
+    });
+}
+get f()
+{
+return this.myform.controls;
+}
   loginFunction() { 
-    let userObj = {
+    this.submitted=true;
+    if(this.myform.invalid)
+     return;
+     
+     // alert('SUCCESS!!'+JSON.stringify(this.myform.value));
+      let userObj = {
       email: this.email.nativeElement.value,
       password: this.password.nativeElement.value
     }
@@ -60,7 +72,7 @@ export class LoginComponent implements OnInit{
             this.isMessage = true;
             setTimeout(() => {
               this.isMessage = false;
-            }, 3000);
+            }, 5000);
           }
           else{
             const role=decodeToken.data.role[0];
@@ -81,6 +93,12 @@ export class LoginComponent implements OnInit{
               this.router.navigate(['/accessdenied']);
           }
         }      
+    },  (err) => {
+      console.log(err);
+        this.isMessage = true;
+        setTimeout(() => {
+          this.isMessage = false;
+        }, 3000);
     });
   }
   
@@ -94,12 +112,7 @@ export class LoginComponent implements OnInit{
   };
 
   
-    ngOnInit() {
-      this.loginForm  =  this.formBuilder.group({
-          email: ['', Validators.required],
-          password: ['', Validators.required]
-      });
-  }
+   
 
 
 }

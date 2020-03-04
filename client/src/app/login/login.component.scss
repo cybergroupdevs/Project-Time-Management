@@ -1,26 +1,19 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+i {
+  font-size: 3rem;
+  position: relative;
+  top: -4px;
 }
 
-body {
-  /* make the body full height*/
-  /* set our custom font */
-  height: 85vh !important;
-  font-family: 'Roboto',
-    sans-serif;
-  display: flex;
-}
-
-.message {
+.invalid-feedback {
   text-align: center;
   font-size: 1.6rem;
   color: #800000;
 }
 
 #form_wrapper {
-  width: 1000px;
+  position: relative;
+  top: 8rem;
+  // width: 1000px;
   margin: auto;
   background-color: #ffffff;
   border-radius: 50px;
@@ -70,11 +63,10 @@ span {
 
 .input_container,
 #input_submit {
-  height: 50px;
-  border: none;
+  height: 60px;
   /* make the borders more round */
   border-radius: 30px;
-  width: 90%;
+  width: 100%;
 }
 
 .input_field {
@@ -106,9 +98,6 @@ span {
   text-transform: uppercase;
 }
 
-
-
-
 i {
   color: var(--icon_color);
 }
@@ -129,9 +118,14 @@ i {
     display: none;
   }
 }
+  .has-error input[type="email"],
+  .has-error input[type="password"] {
+    border-color: rgb(216, 12, 12);
+    color: rgb(230, 14, 14);
+  }
 
-.has-error input[type="email"],
-.has-error input[type="password"] {
-  border-color: rgb(216, 12, 12);
-  color: rgb(230, 14, 14);
-}
+  .message {
+    font-size: 2rem;
+    color: red;
+    text-align: center;
+  }

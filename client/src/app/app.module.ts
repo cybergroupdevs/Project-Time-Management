@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { SendHttpRequestService } from "./services/send-http-request.service";
 //import { AuthorizationService } from './services/authorization.service';
-import { ChartsModule } from 'ng2-charts'
+import { ChartsModule } from 'ng2-charts';
 //Third Party Components
 import {
   MDBBootstrapModule,
@@ -37,6 +37,8 @@ import { MyprofileComponent } from "./myprofile/myprofile.component";
 import { TimesheetModule } from "./timesheet/timesheet.module";
 import { ClevelDashboardModule } from "./main/clevel-dashboard/clevel-dashboard.module";
 import { ClevelDashboardComponent } from "./main/clevel-dashboard/clevel-dashboard.component";
+import { PerfectScrollbarModule }          from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { ProjectComponent } from "./project/project.component";
 import { ProjectFormComponent } from "./project-form/project-form.component";
@@ -49,6 +51,8 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import { TableRowComponent } from "./admindashboard/tablerow/tablerow.component";
+import { SidebarComponent } from './sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
@@ -67,9 +71,11 @@ import { TableRowComponent } from "./admindashboard/tablerow/tablerow.component"
     ProjectFormComponent,
     MyprofileComponent,
     NotFoundComponent,
-    TableRowComponent
+    TableRowComponent,
+    SidebarComponent,
   ],
-  imports: [
+  imports: [PerfectScrollbarModule ,
+    //PerfectScrollbarConfigInterface,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,

@@ -1,3 +1,4 @@
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProjectFormComponent } from "./project-form/project-form.component";
 import { ProjectComponent } from "./project/project.component";
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "admindashboard",
     component: AdmindashboardComponent
+  },
+  {
+    path: "sidebar",
+    component: SidebarComponent
   },
       {
         path: "myProfile",
@@ -98,7 +103,7 @@ const routes: Routes = [
     path: 'timesheet',
     component: TimesheetComponent
   },
-  { 
+  {
     path: "**",
     component: NotFoundComponent
   }
