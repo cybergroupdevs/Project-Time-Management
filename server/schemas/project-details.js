@@ -11,7 +11,7 @@ module.exports = {
     required: true
   },
   projectManager: {
-    type: String,
+    type: ObjectId,
     ref: "projectmanager",
     required: true
   },
