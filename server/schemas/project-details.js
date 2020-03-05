@@ -11,8 +11,8 @@ module.exports = {
     required: true
   },
   projectManager: {
-    type: ObjectId,
-    ref: "projectmanagers",
+    type: String,
+    ref: "projectmanager",
     required: true
   },
   clientName: {

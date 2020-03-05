@@ -25,7 +25,7 @@ module.exports = {
   },
   week: [
     {
-      projectId: {
+      pId: {
         type: ObjectId,
         ref: "project"
       },

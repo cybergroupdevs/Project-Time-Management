@@ -11,17 +11,19 @@ class Timesheet {
       billable: req.body.billable,
       companyName: req.body.companyName,
       customerName: req.body.customerName,
+      status: 'Pending',
       week:req.body.week,
     };
 
     const newTimesheet = await model.timesheet.save(timesheetObj);
-    console.log(newTimesheet['week']);
+    console.log(newTimesheet['week'],"hnjhnjnj");
 
     await Promise.all(newTimesheet['week'].map(async (week) => {
-      console.log(week['projectId']);
-      const projectManager = (await model.project.get({ _id: week["projectId"] }, { projectManager: 1 })).projectManager;
-      console.log(projectManager);
-      await model.projectManager.update({ _id: projectManager }, { $push: { timesheetIds: newTimesheet } });
+      console.log(week['pId'],"weekid");
+      const projectManager = (await model.project.get({ _id: week['pId'] }, { projectManager: 1 }));
+      console.log(projectManager.projectManager)
+      console.log(projectManager,"proj");
+      await model.projectManager.update({ _id: projectManager.projectManager }, { $push: { timesheetIds: newTimesheet } });
     }));
 
     console.log('Reached Here @timesheet.js/line26');

@@ -17,7 +17,7 @@ import { SendHttpRequestService } from "./../../services/send-http-request.servi
       <td>
         {{ employee.billable }}
       </td>
-      <td>
+      <td>  
         {{ employee.date }}
       </td>
       <td>
