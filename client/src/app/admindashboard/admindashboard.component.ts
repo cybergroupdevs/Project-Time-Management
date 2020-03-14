@@ -72,7 +72,8 @@ export class AdmindashboardComponent implements OnInit, OnChanges {
     private employeeService: EmployeeService
   ) {}
   usersArray: any;
-  user: any;
+  user:any;
+
   limit: number = 5;
   dataSize: number;
 
