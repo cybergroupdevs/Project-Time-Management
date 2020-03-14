@@ -1,21 +1,27 @@
 import { SendHttpRequestService } from "./../send-http-request.service";
-import { Component, OnInit, OnChanges,ViewChild,ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { EmployeeService } from "../services/employee.service";
-import swal from 'sweetalert2';
+import swal from "sweetalert2";
 @Component({
   selector: "app-admindashboard",
   templateUrl: "./admindashboard.component.html",
   styleUrls: ["./admindashboard.component.scss", "../main/main.component.scss"]
 })
 export class AdmindashboardComponent implements OnInit, OnChanges {
-  @ViewChild('myAlert',{static:false}) myAlert: ElementRef;
-  deleteEmp:boolean=true;
+  @ViewChild("myAlert", { static: false }) myAlert: ElementRef;
+  deleteEmp: boolean = true;
   name = "Angular";
-  page:number = 1;
-  lastPage:number;
+  page: number = 1;
+  lastPage: number;
   items = [];
-  dashboard:string= "Admin Dashboard"
+  dashboard: string = "Admin Dashboard";
   menus: any = [
     {
       title: "Employees",
@@ -66,7 +72,7 @@ export class AdmindashboardComponent implements OnInit, OnChanges {
     private employeeService: EmployeeService
   ) {}
   usersArray: any;
-  user:any;
+  user: any;
   limit: number = 5;
   dataSize: number;
 
@@ -75,75 +81,74 @@ export class AdmindashboardComponent implements OnInit, OnChanges {
   isSortDecreasing: boolean = false;
 
   tabularData() {
-    this._service.showAllEmployees(this.page.toString(), this.limit.toString(), this.isSortDecreasing).subscribe(res => {
-      console.log(res);
-      this.usersArray = res.payload.data.result.results;
-      this.dataSize = res.payload.data.result.dataSize;
-    });
-    this.lastPage=(this.dataSize/10)+1;
+    this._service
+      .showAllEmployees(
+        this.page.toString(),
+        this.limit.toString(),
+        this.isSortDecreasing
+      )
+      .subscribe(res => {
+        this.usersArray = res.payload.data.result.results;
+        this.dataSize = res.payload.data.result.dataSize;
+      });
+    this.lastPage = this.dataSize / 10 + 1;
   }
 
   ngOnInit() {
     this.tabularData();
-    
   }
 
   ngOnChanges() {
     this.tabularData();
   }
 
-
-
   deleteEmployee(empId: any) {
     const swalWithBootstrapButtons = swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
       },
       buttonsStyling: false
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-     
-    }).then((result) => {
-      if (result.value) {
-        this.employeeService.deleteEmployee(empId).subscribe(res => {
-          this.message = res.payload.message;
-          setTimeout(() => {
-            this.message = null;
-          }, 5000);
-            this.usersArray = this.usersArray.filter(item => item.empId != empId);
-          console.log(res);
-        });
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'employee has been deleted.',
-          'success'
-          
-        )
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === swal.DismissReason.cancel
-      ) {
-        
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your employee data is safe :)',
-          'error'
-        )
-      }
-    })
-  
-    
-   
- }
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      })
+      .then(result => {
+        if (result.value) {
+          this.employeeService.deleteEmployee(empId).subscribe(res => {
+            this.message = res.payload.message;
+            setTimeout(() => {
+              this.message = null;
+            }, 5000);
+            this.usersArray = this.usersArray.filter(
+              item => item.empId != empId
+            );
+          });
+          swalWithBootstrapButtons.fire(
+            "Deleted!",
+            "employee has been deleted.",
+            "success"
+          );
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Your employee data is safe :)",
+            "error"
+          );
+        }
+      });
+  }
 
   logout() {
     this._service.deletetoken();
@@ -156,39 +161,36 @@ export class AdmindashboardComponent implements OnInit, OnChanges {
     this.tabularData();
   }
 
-  handlePaginationResult(type: string){
-    if(type === 'prev'){
-        if(this.page > 1){
-            this.page--;
-            this.tabularData();
-        }
+  handlePaginationResult(type: string) {
+    if (type === "prev") {
+      if (this.page > 1) {
+        this.page--;
+        this.tabularData();
+      }
     }
-    if(type === 'next'){
-
-        if(this.dataSize > this.page * this.limit){
-            this.page++;
-            this.tabularData();
-
-        }
+    if (type === "next") {
+      if (this.dataSize > this.page * this.limit) {
+        this.page++;
+        this.tabularData();
+      }
     }
   }
 
   myFunction() {
-   //Declare variables
+    //Declare variables
     var input, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");
     let obj = this.employeeService.searchEmp(input.value).subscribe(res => {
-      this.usersArray= res;
-      console.log(res);
+      this.usersArray = res;
     });
     table = document.getElementById("myTable");
-     tr = table.getElementsByTagName("tr");
+    tr = table.getElementsByTagName("tr");
     // // Loop through all table rows, and hide those who don't match the search query
-     for (i = 0; i < tr.length; i++) {
-     td = tr[i].getElementsByTagName("td")[0];
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
       if (td) {
-           txtValue = td.textContent || td.innerText;
-           if (txtValue.toUpperCase().indexOf(this.user) > -1) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(this.user) > -1) {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";

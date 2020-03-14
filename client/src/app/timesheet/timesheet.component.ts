@@ -91,7 +91,6 @@ export class TimesheetComponent implements OnInit {
     const dialogRef = this.dialog.open(TimesheetModal);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -125,7 +124,7 @@ export class TimesheetComponent implements OnInit {
     this.empObjId = this.httpService.jsonDecoder(
       localStorage.getItem("Authorization")
     ).data._id;
-    console.log(empId);
+ 
 
 
     let timesheetId: string = null;
@@ -136,14 +135,14 @@ export class TimesheetComponent implements OnInit {
 
     if(timesheetId){
       this.timesheetService.getTimesheetUsingRouteParams(timesheetId).subscribe((res) => {
-        console.log(res);
+ 
         this.response = res.payload.data.timesheet;
       });
       return;
     }
     
     this.timesheetService.getTimesheet(this.empObjId).subscribe(res => {
-      console.log(res);
+
       this.response = res.payload.data.timesheet;
     });
     

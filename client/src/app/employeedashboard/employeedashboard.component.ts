@@ -1,14 +1,14 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { SendHttpRequestService } from "./../send-http-request.service";
-import { Router } from '@angular/router';
-import { EmployeeService } from '../services/employee.service';
+import { Router } from "@angular/router";
+import { EmployeeService } from "../services/employee.service";
 
 @Component({
-  selector: 'app-employeedashboard',
-  templateUrl: './employeedashboard.component.html',
-  styleUrls: ['./employeedashboard.component.scss']
+  selector: "app-employeedashboard",
+  templateUrl: "./employeedashboard.component.html",
+  styleUrls: ["./employeedashboard.component.scss"]
 })
-export class EmployeedashboardComponent implements OnInit,OnChanges {
+export class EmployeedashboardComponent implements OnInit, OnChanges {
   menus: any = [
     {
       title: "Timesheets",
@@ -23,7 +23,6 @@ export class EmployeedashboardComponent implements OnInit,OnChanges {
         {
           title: "Show All Timesheets"
         }
-
       ]
     }
   ];
@@ -31,14 +30,12 @@ export class EmployeedashboardComponent implements OnInit,OnChanges {
   constructor(
     private _service: SendHttpRequestService,
     private router: Router,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngOnChanges(){
-
-  }
+  ngOnChanges() {}
 
   logout() {
     this._service.deletetoken();

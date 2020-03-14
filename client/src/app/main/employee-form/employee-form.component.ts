@@ -3,7 +3,7 @@ import { EmployeeService } from "src/app/services/employee.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { Observable } from "rxjs";
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from "@angular/forms";
 import { SendHttpRequestService } from "../../send-http-request.service";
 @Component({
   selector: "app-employee-form",
@@ -15,18 +15,16 @@ export class EmployeeFormComponent implements OnInit {
   employee: any;
   message: string;
   employeeForm: any;
-  dashboard:string= "Admin Dashboard"
+  dashboard: string = "Admin Dashboard";
   constructor(
-   
     private employeeService: EmployeeService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private _service :SendHttpRequestService
+    private _service: SendHttpRequestService
   ) {
     this.employeeForm = this.formBuilder.group({
-      name: ['', Validators.required,Validators.minLength(2)],
-     
+      name: ["", Validators.required, Validators.minLength(2)]
     });
   }
   menus: any = [
@@ -70,32 +68,15 @@ export class EmployeeFormComponent implements OnInit {
       ]
     }
   ];
-  
+
   ngOnInit(): any {
-   
-    console.log("ngOnInit");
-
-    // this.route.params.pipe(switchMap((params: Params) => {
-    //   console.log(params);
-    //   this.typeOfForm = params.type;
-    //   if(this.typeOfForm !== 'get'){
-
-    //   }
-    // }));
-    this.route.params.subscribe((data: Params) => {
-      console.log(data);
-    });
+    this.route.params.subscribe((data: Params) => {});
 
     this.route.params
       .pipe(
         switchMap((params: Params) => {
-          //console.log(params);
-
-          // debugger;
-          console.log(params,"parrrraammss");
-          console.log(this.typeOfForm);
           this.typeOfForm = params.type;
-          console.log(this.typeOfForm,"form-type");
+
           if (!params.type) {
             this.typeOfForm = "get";
           }
@@ -103,23 +84,18 @@ export class EmployeeFormComponent implements OnInit {
           if (!params.empId) {
             return new Observable<any>();
           }
-          console.log(this.typeOfForm);
+
           return this.employeeService.getEmployee(params.empId);
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
-        console.log(response.employee);
         return (this.employee = response.employee);
       });
   }
-  
 
   employeeCreateOrUpdate(obj, typeOfForm, form): any {
-    console.log(obj, typeOfForm);
     this.employeeService.employeeCreateOrUpdate(obj, typeOfForm).subscribe(
       (res: any) => {
-        console.log(res.payload.message);
         this.message = res.payload.message;
         setTimeout(() => {
           this.message = null;
@@ -127,7 +103,6 @@ export class EmployeeFormComponent implements OnInit {
         form.reset();
       },
       err => {
-        console.log(err);
         this.message = err.error.payload.message;
         setTimeout(() => {
           this.message = null;
@@ -137,9 +112,7 @@ export class EmployeeFormComponent implements OnInit {
   }
   saveEmployee() {
     if (this.employeeForm.dirty && this.employeeForm.valid) {
-      alert(
-        `Name: ${this.employeeForm.value.empName} `
-      );
+      alert(`Name: ${this.employeeForm.value.empName} `);
     }
   }
   logout() {
@@ -148,5 +121,3 @@ export class EmployeeFormComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
 }
-
-   

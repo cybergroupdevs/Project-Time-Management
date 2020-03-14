@@ -42,9 +42,19 @@ export class TimesheetService {
   //       return this.http.get<any>("http://localhost:3000/timesheet", { ...this.httpOptions });
   //     }
   // }
-  getTimesheet(empObjId: any, type: string = null, page: string = null, limit: string = null, desc: boolean = null): Observable<any> {
-    console.log(empObjId, 'Inside Service');
-    const params: HttpParams = new HttpParams().set("empObjId", empObjId).set("type", type).set("page", page).set("limit", limit).set("desc", desc.toString());
+  getTimesheet(
+    empObjId: any,
+    type: string = null,
+    page: string = null,
+    limit: string = null,
+    desc: boolean = null
+  ): Observable<any> {
+    const params: HttpParams = new HttpParams()
+      .set("empObjId", empObjId)
+      .set("type", type)
+      .set("page", page)
+      .set("limit", limit)
+      .set("desc", desc.toString());
 
     return this.http.get("http://localhost:3000/timesheet", {
       ...this.httpOptions,
@@ -52,15 +62,12 @@ export class TimesheetService {
     });
   }
 
-  getTimesheetUsingRouteParams(timesheetId: string): Observable<any>{
+  getTimesheetUsingRouteParams(timesheetId: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/timesheet/${timesheetId}`);
   }
 
   createTimesheet(timesheet: any): Observable<any> {
-    return this.http.post(
-      TIMESHEET_API,
-      timesheet,
-      this.httpOptions)
+    return this.http.post(TIMESHEET_API, timesheet, this.httpOptions);
   }
   // getTimesheet(empObjId: string): Observable<any> {
   //   const params = new HttpParams().set("empObjId", empObjId);
@@ -89,13 +96,18 @@ export class TimesheetService {
       return of(result as T);
     };
   }
-  private log(message: string) {
-    console.log(message);
-  }
+  private log(message: string) {}
 
-  getSpecificTimesheets(empId: string, startDate: any): Observable<any>{
-    console.log(empId, startDate, 'Inside timesheet.service.ts/getSpecificTimesheets');
-    const params: HttpParams = new HttpParams().set('empId', empId).set('startDate', `${startDate.year}-${startDate.month}-${startDate.day}`);
-    return this.http.get(`${TIMESHEET_API}/filter`, { params, ...this.httpOptions });
+  getSpecificTimesheets(empId: string, startDate: any): Observable<any> {
+    const params: HttpParams = new HttpParams()
+      .set("empId", empId)
+      .set(
+        "startDate",
+        `${startDate.year}-${startDate.month}-${startDate.day}`
+      );
+    return this.http.get(`${TIMESHEET_API}/filter`, {
+      params,
+      ...this.httpOptions
+    });
   }
 }
