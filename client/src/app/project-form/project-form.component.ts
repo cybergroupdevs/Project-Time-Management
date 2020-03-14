@@ -110,6 +110,11 @@ export class ProjectFormComponent implements OnInit {
 
   projectCreateOrUpdate(obj, formType): any {
     console.log(obj, formType);
+    console.log(obj.startDate,obj.endDate,"ghjj");
+    if(obj.startDate.nativeElement.value  >= obj.endDate.nativeElement.value ){
+      alert("Start date cannot be greater than end date!");
+      return ;
+    }
      this.employeeService
        .projectCreateOrUpdate(obj, formType)
        .subscribe((res: any) => {
@@ -153,4 +158,10 @@ export class ProjectFormComponent implements OnInit {
 
     this.router.navigate(["/login"]);
   }
+// greaterThan(subj,num) {
+//     if(subj<num)
+//     {
+//       alert("Start date should be less than end date");
+//     }
+//   }
 }
