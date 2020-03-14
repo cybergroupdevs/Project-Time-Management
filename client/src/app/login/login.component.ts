@@ -60,7 +60,13 @@ return this.myform.controls;
     return;
     }
      if(this.email.nativeElement.value == "" || this.password.nativeElement.value == ""){
-      alert("Empty Fields !");
+     // alert("Empty Fields !");
+     swal.fire({
+      icon: 'error',
+      title: 'Warning!',
+      text: "Empty Fields !",
+    //  footer: '<a href>Why do I have this issue?</a>'
+    })
       return ;
     }
      // alert('SUCCESS!!'+JSON.stringify(this.myform.value));
