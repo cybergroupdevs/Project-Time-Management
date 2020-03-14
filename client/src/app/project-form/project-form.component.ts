@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
 import { SendHttpRequestService } from "../send-http-request.service";
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
@@ -109,10 +110,19 @@ export class ProjectFormComponent implements OnInit {
   }
 
   projectCreateOrUpdate(obj, formType): any {
-    console.log(obj, formType);
-    console.log(obj.startDate,obj.endDate,"ghjj");
-    if(obj.startDate.nativeElement.value  >= obj.endDate.nativeElement.value ){
-      alert("Start date cannot be greater than end date!");
+    if(obj.startDate >= obj.endDate){
+     // alert("Start date cannot be greater than end date!");
+      // swal.fire({
+      //   title: "Warning!",
+      //   text: "Start date cannot be greater than end date!",
+      //   imageUrl: 'thumbs-up.jpg'
+      // });
+      swal.fire({
+        icon: 'error',
+        title: 'Warning!',
+        text: 'Start date cannot be greater than end date!',
+      //  footer: '<a href>Why do I have this issue?</a>'
+      })
       return ;
     }
      this.employeeService
