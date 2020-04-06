@@ -21,7 +21,7 @@
    * [Bootstrap]-Bootstrap is used to make web pages responsive for different screens
    * [Mediaquery]-Mediaquery is also used to make web pages responsive for different screens
    * [nodemailer]-nodemailer is used to send emails to employees 
-### Contributers:-
+### Contributors:-
    * Abha Rana
    * Himanshu Sharma
    * Kritika Sachdeva
